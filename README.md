@@ -1,5 +1,4 @@
 # jwan0684_9103_tut01
-wk10 Quiz8
 ## Part 1 **Imaging Technique Inspiration**
 I am inspired by cinematic light and shadow transitions used in films and immersive installation artworks. I will add moving light sources, changing shadow lengths, and colour transitions into my project. These techniques create emotional environments that evolve over time instead of responding instantly, fitting the theme of “time-based” mechanics. Like Paul Sermon’s interactive works and The Weather Project, I want the audience to become part of the temporal environment. Through interaction, viewers’ movement and shadows will merge with the changing atmosphere, allowing them to actively experience time rather than simply observe it.
 ### **Reference Images**
