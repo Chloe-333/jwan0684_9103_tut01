@@ -7,8 +7,8 @@ I am inspired by cinematic light and shadow transitions used in films and immers
     - Picture 1
 ![Pulse Room](https://www.lozano-hemmer.com/image_sets/pulse_room/kanazawa_2025/pulse_room_kanazawa_2025_ko_002.jpg)
     - Picture 2 
-- Link
 ![The Weather Project](https://res.cloudinary.com/olafureliasson-net/image/private/q_auto:eco,c_fit,h_1920,w_1920/img/the-weather-project_21881.webp)
+- Link
 [Inspiration link1](https://olafureliasson.net/artwork/the-weather-project-2003/)
 [Inspiration link2](https://www.lozano-hemmer.com/pulse_room.php)
 [Inspiration link3](https://whitney.org/collection/works/15286)
@@ -17,15 +17,11 @@ I want to explore four p5.js techniques: colour interpolation, clock-based timin
 ### **Bold Text** Reference Images
 - Picture
     - Picture 1
-![Pulse Room](https://www.lozano-hemmer.com/image_sets/pulse_room/kanazawa_2025/pulse_room_kanazawa_2025_ko_002.jpg)
-    - Picture 2 
+![Color Interpolation](ReadmeImages/wk10P1.png)
+    - Picture 2
+![Material Lighting](ReadmeImages/wk10P2.png)
 - Link
-![The Weather Project](https://res.cloudinary.com/olafureliasson-net/image/private/q_auto:eco,c_fit,h_1920,w_1920/img/the-weather-project_21881.webp)
-[Inspiration link1](https://olafureliasson.net/artwork/the-weather-project-2003/)
-[Inspiration link2](https://www.lozano-hemmer.com/pulse_room.php)
-[Inspiration link3](https://whitney.org/collection/works/15286)
-- Item 1  
-
-- Item 2  
-  - Subitem 2.1 
-  - Subitem 2.2 
+[Inspiration link1](https://p5js.org/examples/repetition-color-interpolation/)
+[Inspiration link2](https://p5js.org/examples/calculating-values-clock/)
+[Inspiration link3](https://p5js.org/examples/calculating-values-interpolate/)
+[Inspiration link4](https://p5js.org/examples/3d-materials/)
