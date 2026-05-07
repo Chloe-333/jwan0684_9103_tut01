@@ -2,7 +2,7 @@
 ## Part 1 **Imaging Technique Inspiration**
 I am inspired by cinematic light and shadow transitions used in films and immersive installation artworks. I will add moving light sources, changing shadow lengths, and colour transitions into my project. These techniques create emotional environments that evolve over time instead of responding instantly, fitting the theme of “time-based” mechanics. Like Paul Sermon’s interactive works and The Weather Project, I want the audience to become part of the temporal environment. Through interaction, viewers’ movement and shadows will merge with the changing atmosphere, allowing them to actively experience time rather than simply observe it.
 ### **Reference Images**
-- **Picture**
+- **Pictures**
     - *Picture 1*
 ![Pulse Room](https://www.lozano-hemmer.com/image_sets/pulse_room/kanazawa_2025/pulse_room_kanazawa_2025_ko_002.jpg)
     - *Picture 2*
@@ -17,7 +17,7 @@ I am inspired by cinematic light and shadow transitions used in films and immers
 ## Part 2 **Coding Technique Exploration**
 I want to explore four p5.js techniques: colour interpolation, clock-based timing, linear interpolation, and material lighting. lerpColor() can create gradual colour and lighting transitions between different atmospheric states such as morning, sunset, and night. Clock-based timing systems can structure visual phases over time. lerp() can create delayed shadows and fading light trails, allowing shadows to behave like visual memories. Material lighting can simulate how different surfaces react to light. Together, these techniques can create a temporal light environment where colour, shadow, and atmosphere continuously evolve.
 ### **Reference Images**
-- **Picture**
+- **Pictures**
     - *Picture 1*
 ![Color Interpolation](ReadmeImages/wk10P1.png)
     - *Picture 2*
