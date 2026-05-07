@@ -1,4 +1,4 @@
-# jwan0684_9103_tut01
+# jwan0684_9103_tut01 Quiz8
 ## Part 1 **Imaging Technique Inspiration**
 I am inspired by cinematic light and shadow transitions used in films and immersive installation artworks. I will add moving light sources, changing shadow lengths, and colour transitions into my project. These techniques create emotional environments that evolve over time instead of responding instantly, fitting the theme of “time-based” mechanics. Like Paul Sermon’s interactive works and The Weather Project, I want the audience to become part of the temporal environment. Through interaction, viewers’ movement and shadows will merge with the changing atmosphere, allowing them to actively experience time rather than simply observe it.
 ### **Reference Images**
@@ -7,7 +7,7 @@ I am inspired by cinematic light and shadow transitions used in films and immers
 ![Pulse Room](https://www.lozano-hemmer.com/image_sets/pulse_room/kanazawa_2025/pulse_room_kanazawa_2025_ko_002.jpg)
     - *Picture 2*
 ![The Weather Project](https://res.cloudinary.com/olafureliasson-net/image/private/q_auto:eco,c_fit,h_1920,w_1920/img/the-weather-project_21881.webp)
-- **Link**
+- **Inspiration Links**
     - *Link 1*
 [Inspiration link1](https://olafureliasson.net/artwork/the-weather-project-2003/)
     - *Link 2*
@@ -22,7 +22,7 @@ I want to explore four p5.js techniques: colour interpolation, clock-based timin
 ![Color Interpolation](ReadmeImages/wk10P1.png)
     - *Picture 2*
 ![Material Lighting](ReadmeImages/wk10P2.png)
-- **Link**
+- **Coding Technique References**
     - *Link 1*
 [Inspiration link1](https://p5js.org/examples/repetition-color-interpolation/)
     - *Link 2*
