@@ -15,7 +15,7 @@ I am inspired by cinematic light and shadow transitions used in films and immers
     - *Link 3*
 [Inspiration link3](https://whitney.org/collection/works/15286)
 ## Part 2 **Coding Technique Exploration**
-I want to explore four p5.js techniques: colour interpolation, clock-based timing, linear interpolation, and material lighting. lerpColor() can create gradual colour and lighting transitions between different atmospheric states such as morning, sunset, and night. Clock-based timing systems can structure visual phases over time. lerp() can create delayed shadows and fading light trails, allowing shadows to behave like visual memories. Material lighting can simulate how different surfaces react to light. Together, these techniques can create a temporal light environment where colour, shadow, and atmosphere continuously evolve.
+I want to explore four p5.js techniques: colour interpolation, clock-based timing, linear interpolation, and material lighting. Color Interpolation can create gradual colour and lighting transitions between different atmospheric states such as morning, sunset, and night. Clock-based timing systems can structure visual phases over time.linear interpolation can create delayed shadows and fading light trails, allowing shadows to behave like visual memories. Material lighting can simulate how different surfaces react to light. Together, these techniques can create a temporal light environment where colour, shadow, and atmosphere continuously evolve. I hope these techniques can make our work as engaging and immersive as possible, with a strong sense of realism.
 ### **Reference Images**
 - **Pictures**
     - *Picture 1*
