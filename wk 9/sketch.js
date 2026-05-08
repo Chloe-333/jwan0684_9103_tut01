@@ -14,8 +14,8 @@ function draw() {
 
   // Slowly rotate the co-ordinate system
   // (effectively rotating the canvas around the origin)
-  // Try changing the number 0.25 to see what patterns you can make
-  rotate(frameCount * 0.25); // move 0.25 degrees per frame
+  // Try changing the number 1600 to see what patterns you can make
+  rotate(frameCount * 0.25); // rotate 0.25 degrees per frame
   
   // Calculate translateX and translate Y, 
   // so that the dot follows an elliptical pattern
@@ -31,4 +31,15 @@ function draw() {
   noStroke();
   fill(255);
   circle(0, 0, 5);
+
+  // Draw another dot orbiting the first dot
+  // You can adjust the following value to change the speed of the second dot
+  let angle = frameCount * 5; // move 5 degrees every frame
+  let orbitDistance = 5; // Distance from the first dot
+  let orbitX = cos(angle) * orbitDistance;
+  let orbitY = sin(angle) * orbitDistance;
+
+  translate(orbitX, orbitY);
+  fill(255, 0, 0); // Make the second dot red
+  circle(0, 0, 3); // And slightly smaller than the first dot
 }
