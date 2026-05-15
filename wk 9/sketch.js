@@ -14,6 +14,12 @@ let perlinNoiseStep = 0.1;
 
 function setup() {
   createCanvas(1000, 500);
+  
+  // Let's set the colour mode to HSB. This means that we use Hue, Saturation and Brightness  
+  // to define colours, not RGB. 
+  // Hue is the colour, saturation is how much of the colour is in the mix and brightness 
+  // is how bright the colour is. 
+  colorMode(HSB);
 
   // We will fill our array with random numbers between 0 and 1.
   for (let i = 0; i < valueArrayLength; i++) {
@@ -35,12 +41,15 @@ function setup() {
 
 function draw() {
   // Set up our drawing environment
-  background(255);
+  background(0, 0, 100);
   noStroke();
   fill(0);
 
   drawValues("Random values", 50, 70, randomNumberArray);
   drawValues("Perlin noise values", 50, 280, perlinNoiseArray);
+
+  drawNumbersAsColours("Random numbers as hue", 300, 70, randomNumberArray);
+  drawNumbersAsColours("Perlin noise as hue", 300, 280, perlinNoiseArray);
 }
 
 // A function to draw our array values as rectangles where the height is derived from each
@@ -57,4 +66,25 @@ function drawValues(title, x, y, randomOrNoiseArray) {
   for (let i = 0; i < valueArrayLength; i++) {
     rect(x + (i * 200) / valueArrayLength, y + 130, 200 / valueArrayLength, randomOrNoiseArray[i] * -100);
   }
+}
+
+// A function to draw the array values as rectangles where the fill is derived from each
+// value of the array. 
+// This function takes a title, an x and y positio,n and an array of values to draw.
+function drawNumbersAsColours(title, x, y, randomOrNoiseArray) {
+  // Let's draw a text title
+  text(title, x, y);
+
+  // We use push here to save the current fill style so we can pop it back after we have
+  // drawn the rectangles.
+  push();
+  for (let i = 0; i < valueArrayLength; i++) {
+    // We will make an HSB colour where the hue is derived from each value of the array. 
+    // And the saturation and brightness are both set to 100 (maximum).       
+    fill(randomOrNoiseArray[i] * 360, 100, 100);
+    rect(x + (i * 200) / valueArrayLength, y + 130, 200 / valueArrayLength, -100);
+  }
+  
+  // Pop will restore the fill style to what it was before the push.
+  pop();
 }
