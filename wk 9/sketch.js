@@ -50,6 +50,9 @@ function draw() {
 
   drawNumbersAsColours("Random numbers as hue", 300, 70, randomNumberArray);
   drawNumbersAsColours("Perlin noise as hue", 300, 280, perlinNoiseArray);
+
+  drawNumbersAsCircleSize("Random numbers as circle size", 600, 70, randomNumberArray);
+  drawNumbersAsCircleSize("Perlin noise as circle size", 600, 280, perlinNoiseArray);
 }
 
 // A function to draw our array values as rectangles where the height is derived from each
@@ -87,4 +90,19 @@ function drawNumbersAsColours(title, x, y, randomOrNoiseArray) {
   
   // Pop will restore the fill style to what it was before the push.
   pop();
+}
+
+// A function to draw a circle where the size is derived from the array values moving along
+// the array each frame.
+// This function takes a title, an x and y position and an array of values to draw.
+function drawNumbersAsCircleSize(title, x, y, randomOrNoiseArray) {
+  // Let's draw a text title
+  text(title, x, y);
+
+  // frameCount is a variable that is built into p5.js that increments each frame.
+  // We will use the remainder operator to loop through the array each frame.
+  // It will give us the remainder of the division of frameCount by the length of the array.
+  // This will give us a value between 0 and the length of the array no matter how many 
+  // frames have passed.
+  ellipse(x + 150, y + 80, 50 + randomOrNoiseArray[frameCount % valueArrayLength] * 50);
 }
