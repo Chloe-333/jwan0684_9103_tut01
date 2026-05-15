@@ -1,81 +1,134 @@
-// This class will create and manage a random shape with noise.Part 4
-class randomNoisyShape {
-    // The constructor will take a type of shape as an argument - circle or square
-    constructor(type) {
-        this.type = type;
-        // Randomise the x and y position of the shape. These are limited to 80% of the width and height
-        this.x = random(0.8);
-        this.y = random(0.8);
-
-        // Randomise the size of the shape between 5% and 20% of the width
-        this.size = random(0.05, 0.2);
-        // Randomise the colour of the shape
-        this.colour = [random(255), random(255), random(255)];
-        // Randomise the noise scale between 0.1 and 0.35 - this will decide how much the shape will move. 
-        // Try changing the range to see how it affects the shape's movement.
-        this.noiseScale = random(0.1, 0.35);
-        // Randomise the noise offset - this is where along the noise function the noise will start to be taken from.
-        this.noiseLocation = random(10);
-    }
-
-    display() {
-        // Use the instance colour to fill the shape.
-        fill(this.colour);
-        noStroke();
-        // Get the smaller dimension of the canvas.
-        let minDimension = min(width, height);  // Use the smaller dimension to maintain the aspect ratio.
-        // Calculate the size of the shape based on the smaller dimension.
-        // Remember the sizes were made in percentages, so this will scale correctly no matter what the width.
-        let size = this.size * minDimension;
-
-        // We have 2 noise values, one for the x and one for the y. We will sample the yNoise
-        // from slightly further along the noise function by adding 10 to the x noise offset.
-        let xNoise = noise(this.noiseLocation);
-        let yNoise = noise(this.noiseLocation + 10);
-
-        // The x position is the x value of the shape plus the xNoise value multiplied by the 
-        // noise scale and the width of the canvas - same idea for the y position.
-        let x = (this.x + xNoise * this.noiseScale) * width;
-        let y = (this.y + yNoise * this.noiseScale) * height;
-
-        // Draw the shape based on the type
-        switch (this.type) {
-            case 'circle':
-                ellipse(x, y, size, size);
-                break;
-            case 'square':
-                rect(x, y, size, size);
-                break;
-        }
-        // Increment the noise offset each frame so we sample the next part of the noise function.
-        this.noiseLocation += 0.01;
-    }
-}
-
-// Create an array to hold the shapes.
-let shapes = [];
+// This is the variable we will use to store our class instance.
+let animator;
+// This is the noise increment value, it will be used to move along the Perlin noise curve
+let noiseIncrement = 0;
 
 function setup() {
-    createCanvas(windowWidth, windowHeight);
+  // We want to make a square canvas, so we will check the window width and height and take the smaller of the two.
+  let size = Math.min(windowWidth, windowHeight);
 
-    // Create 4 shapes and add them to the array.
-    shapes.push(new randomNoisyShape('circle'));
-    shapes.push(new randomNoisyShape('circle'));
-    shapes.push(new randomNoisyShape('square'));
-    shapes.push(new randomNoisyShape('square'));
+  // Resize the canvas to be a square using the value we just got.
+  createCanvas(size, size);
+
+  // Set the angle mode to degrees.
+  angleMode(DEGREES);
+
+  // Create a new DotAnimator object. It will be positioned at 0,0 with a size of the width of the canvas, 
+  // a complexity of 0.2 and a speed of 1 (it will update every frame).
+  animator = new DotAnimator(0, 0, width, 0.2, 1);
+
+  // Clear the background to black.
+  background(0);
 }
 
 function draw() {
-    background(0);
+  // Use the alpha value to make the background fade slowly.
+  background(0, 1);
 
-    // Use a for-of loop to display the shapes.
-    for (let shape of shapes) {
-        shape.display();
-    }
+  // The noise increment will increase by 0.05 every frame, moving along the Perlin noise curve.
+  // Try changing this value to see how it affects the dot's movement.
+  noiseIncrement += 0.05;
+
+  // Update the dot animator with the new noise value. We will control how much the 
+  // noise affects the dot's position with the mouseX value.
+  animator.update(noise(noiseIncrement) * (width / mouseX));
 }
 
 function windowResized() {
-    // Resize the canvas when the window is resized. This will update the width and height variables 
-    // that are used to calculate the size and position of the shapes.
-    resizeCanvas(windowWidth, windowHeight);
+  // Again we want a square, so if the window is resized we will check the new 
+  // width and height and take the smaller of the two.
+  let size = Math.min(windowWidth, windowHeight);
+
+  // Use the new size to resize the canvas.
+  resizeCanvas(size, size);
+
+  // Recalculate the bounds of the dot animator - this sets the width and height of the animator.
+  animator.recalculateBounds(0, 0, width);
+
+  // Clear the background to black again.
+  background(0);
+}
+
+function keyPressed() {
+  if (key == "c") {
+    background(0);
+  }
+}
+
+class DotAnimator {
+  // Our constructor will take the x and y position of the dot, the size of the drawing area 
+  // (it's a single value because it's a square), 
+  // the complexity of the dot's movement and the speed of the dot's movement.
+  constructor(xPos, yPos, size, complexity, speed) {
+    // Use the inputs to the constructor to set the initial values of the class variables.
+    this.xPos = xPos;
+    this.yPos = yPos;
+    this.complexity = complexity;
+    this.speed = speed;
+    this.size = size;
+    // Set the initial angle of the dot to 0.
+    this.angle = 0;
+    // Set the increment to 0 - we will use this instead of the frameCount so that 
+    // each instance of the class can have its own increment value.
+    this.increment = 0;
+    // Draw distortion will influence the dot's position, we will set it to 0 initially.
+    this.drawDistortion = 0;
+  }
+
+  // We have an update function for our class, this will be called every frame.
+  update(drawDistortion) {
+    /*
+      Here we can control the speed by controlling when each instance of the class updates its increment value.
+      Increment value here replaces frameCount in the last version of this code.
+      frameCount is a global variable that increases by 1 every frame, our increment only increases when we want it to.
+      We control the increment increase using the remainder operator, this means that the increment will only 
+      increase when the frameCount is divisible by the speed value.
+    */
+    if (frameCount % this.speed == 0) {
+      // If we should update the increment value, we increase the increment value by 1.
+      this.increment++;
+      // The angle will be used to define how many degrees the dot is rotated by (changing the complexity of the drawing).
+      // We use class variables to control this now.
+      this.angle += this.complexity;
+    }
+
+    // We will apply the draw distortion even if we don't update the angle and increment.
+    // This will make the dot move slightly even when the angle is not changing.
+    this.drawDistortion = drawDistortion;
+
+    // We want to draw a bounding box for the instance of the class. 
+    // We will draw a rectangle at the x and y position with the size of the class.
+    stroke(255);
+    noFill();
+    rect(this.xPos, this.yPos, this.size, this.size); // Draw the boundary at the computed position.
+
+    // These translate functions are the same as before, we use 8 and 4 to make an elliptical pattern.
+    // The only difference is we are using the sin and cos of the increment value instead of the frameCount.
+    let translateX = (sin(this.increment) * this.size) / 8;
+    let translateY = (cos(this.increment) * this.size) / 4;
+
+    // Now push the drawing context so we can apply transformations to the dot.
+    push();
+    // First we translate the drawing context to the centre of the class instance position.
+    translate(this.xPos + this.size / 2, this.yPos + this.size / 2);
+    // Now we rotate as before, but it's now based on our complexity control.
+    rotate(this.angle);
+    // And we translate with the calculated values just like before.
+    translate(translateX, translateY);
+
+    // Draw the animated dot
+    noStroke();
+    fill(255);
+    // Now we draw the dot at 0,0 and apply the distortion value to slightly alter the x and y position.
+    circle(0 + this.drawDistortion, 0 + this.drawDistortion, 5);
+    pop(); // Reset transformations
+  }
+  
+  // This function will be used to recalculate the bounds of the class instance, 
+  // so we can react to changes in the canvas size.
+  recalculateBounds(xPos, yPos, size) {
+    this.xPos = xPos;
+    this.yPos = yPos;
+    this.size = size;
+  }
 }
